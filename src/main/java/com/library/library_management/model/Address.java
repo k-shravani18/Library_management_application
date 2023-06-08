@@ -23,7 +23,11 @@ public class Address {
     private String zipcode;
 
     @ManyToMany(mappedBy = "addresses")
-    private List<Member> users;
+    private List<Member> members;
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 
     // Getters and setters
 }

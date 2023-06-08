@@ -23,15 +23,20 @@ public class Book {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    public BookProfile getBookProfile() {
-        return bookProfile;
-    }
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    public void setBookProfile(BookProfile bookProfile) {
-        this.bookProfile = bookProfile;
-    }
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
+
 }
 

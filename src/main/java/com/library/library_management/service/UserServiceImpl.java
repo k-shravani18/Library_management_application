@@ -16,22 +16,22 @@ public class UserServiceImpl implements IUserService {
     private IUserRepository userRepository;
 
 @Override
-public void addUser(Member user, Address address) {
+public void addMember(Member user, Address address) {
     if (user.getAddresses() == null) {
         user.setAddresses(new ArrayList<>());
     }
-    if (address.getUsers() == null) {
-        address.setUsers(new ArrayList<>());
+    if (address.getMembers() == null) {
+        address.setMembers(new ArrayList<>());
     }
 
     user.getAddresses().add(address);
-    address.getUsers().add(user);
+    address.getMembers().add(user);
     userRepository.save(user);
 }
 
     @Override
-    public String updateUser(Member user) {
-        Member existUser =userRepository.findById(user.getUserId()).orElse(null);
+    public String updateUser(Member member) {
+        Member existUser =userRepository.findById(member.getMemberId()).orElse(null);
         if (existUser==null){
             throw new UserNotFoundException("User Not Found");
 
@@ -43,7 +43,7 @@ public void addUser(Member user, Address address) {
 
     @Override
     public String deleteUser(Member user) {
-        Member existUser =userRepository.findById(user.getUserId()).orElse(null);
+        Member existUser =userRepository.findById(user.getMemberId()).orElse(null);
         if (existUser==null){
             throw new BookNotFoundException("User Not Found");
 

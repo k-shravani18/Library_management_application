@@ -11,11 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "\"member\"")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long memberId;
 
     private String firstName;
     private String lastName;
@@ -23,14 +23,14 @@ public class Member {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "user_address",
-            joinColumns = @JoinColumn(name = "user_id"),
+            name = "member_address",
+            joinColumns = @JoinColumn(name = "member_id"),
             inverseJoinColumns = @JoinColumn(name = "address_id")
     )
     private List<Address> addresses;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Book> userBooks;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Book> memberBooks;
 
     // Getters and setters
 
