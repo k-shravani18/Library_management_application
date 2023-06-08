@@ -1,8 +1,9 @@
-package com.library.library_management.service;
+package com.library.library_management.service.impl;
 
 import com.library.library_management.exceptions.BookNotFoundException;
 import com.library.library_management.model.Book;
 import com.library.library_management.repository.IBookRepository;
+import com.library.library_management.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

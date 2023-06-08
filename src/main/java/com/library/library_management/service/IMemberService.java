@@ -6,7 +6,7 @@ import com.library.library_management.model.Member;
 import java.util.List;
 public interface IMemberService {
     //crud operarions
-    void addMember(Member member, Address address);
+    void addMember(Member member);
     String updateUser(Member user);
     String deleteUser(Member user);
     List<Member> getAll();

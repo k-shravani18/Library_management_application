@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Table;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class LoginForm {
+@Table(name = "t_user")
+public class User {
 
         private String username;
         private String password;

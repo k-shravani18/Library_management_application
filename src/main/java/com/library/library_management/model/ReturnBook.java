@@ -19,7 +19,7 @@ public class ReturnBook {
     private Member member;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book")
+    @JoinColumn(name = "bookId")
     private List<Book> books;
 
     @Id

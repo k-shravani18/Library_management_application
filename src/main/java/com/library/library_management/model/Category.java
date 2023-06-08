@@ -13,10 +13,10 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
-    private String categoryName;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Book> bookList;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long categoryId;
+        private String categoryName;
+        @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+        private List<Book> bookList;
 }

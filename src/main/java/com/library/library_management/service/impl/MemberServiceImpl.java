@@ -1,10 +1,11 @@
-package com.library.library_management.service;
+package com.library.library_management.service.impl;
 
 import com.library.library_management.exceptions.BookNotFoundException;
 import com.library.library_management.exceptions.MemberNotFoundException;
 import com.library.library_management.model.Address;
 import com.library.library_management.model.Member;
 import com.library.library_management.repository.IMemberRepository;
+import com.library.library_management.service.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +17,17 @@ public class MemberServiceImpl implements IMemberService {
     private IMemberRepository memberRepository;
 
 @Override
-public void addMember(Member member, Address address) {
-    if (member.getAddresses() == null) {
-        member.setAddresses(new ArrayList<>());
-    }
-    if (address.getMembers() == null) {
-        address.setMembers(new ArrayList<>());
-    }
-
-    member.getAddresses().add(address);
-    address.getMembers().add(member);
-    memberRepository.save(member);
+public void addMember(Member member) {
+//    if (member.getAddresses() == null) {
+//        member.setAddresses(new ArrayList<>());
+//    }
+//    if (address.getMembers() == null) {
+//        address.setMembers(new ArrayList<>());
+//    }
+//
+//    member.getAddresses().add(address);
+//    address.getMembers().add(member);
+//    memberRepository.save(member);
 }
 
     @Override
