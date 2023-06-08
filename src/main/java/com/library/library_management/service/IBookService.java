@@ -1,7 +1,6 @@
 package com.library.library_management.service;
 
 import com.library.library_management.model.Book;
-import com.library.library_management.model.BookProfile;
 
 import java.util.List;
 public interface IBookService {
@@ -11,7 +10,6 @@ public interface IBookService {
     Book getById(Long bookId);
     List<Book>getAll();
 
-    void saveBookProfile(BookProfile bookProfile);
 
     //custom operations
 //    List<Book> getByName(String name);

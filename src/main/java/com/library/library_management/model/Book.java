@@ -17,12 +17,7 @@ public class Book {
     private Long bookId;
     private String bookName;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_profile_id")
-    private BookProfile bookProfile;
-
-
-    @ManyToOne
+     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 

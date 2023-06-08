@@ -2,8 +2,6 @@ package com.library.library_management.service;
 
 import com.library.library_management.exceptions.BookNotFoundException;
 import com.library.library_management.model.Book;
-import com.library.library_management.model.BookProfile;
-import com.library.library_management.repository.IBookProfileRepository;
 import com.library.library_management.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +12,6 @@ public class BookServiceImpl implements IBookService {
     @Autowired
     private IBookRepository bookRepository;
 
-    private IBookProfileRepository bookProfileRepository;
 
     public Book addBook(Book book) {
         return bookRepository.save(book);
@@ -77,10 +74,6 @@ public class BookServiceImpl implements IBookService {
 
     }
 
-    @Override
-    public void saveBookProfile(BookProfile bookProfile) {
-        bookProfileRepository.save(bookProfile);
-    }
 
 //    @Override
 //    public List<Book> getByName(String name) {

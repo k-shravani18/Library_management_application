@@ -1,13 +1,10 @@
 package com.library.library_management.controller;
 
-import com.library.library_management.model.Book;
-import com.library.library_management.model.BookProfile;
 import com.library.library_management.model.LoginForm;
 import com.library.library_management.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,20 +45,20 @@ public class NewController {
 
     //category
     // Display the category form
-    @GetMapping("/category")
-    public String showCategoryForm(Model model) {
-        model.addAttribute("bookProfile", new BookProfile());
-        return "categoryForm";
-    }
+//    @GetMapping("/category")
+//    public String showCategoryForm(Model model) {
+//        model.addAttribute("bookProfile", new BookProfile());
+//        return "categoryForm";
+//    }
 
     // Handle the category form submission
     //@PostMapping(value = "/category/add")
-    @RequestMapping(value = "/category/add",method = RequestMethod.POST)
-    public String addCategory(@ModelAttribute("bookProfile") BookProfile bookProfile) {
-        // Save the bookProfile to the database
-        bookService.saveBookProfile(bookProfile);
-        return "redirect:/webc/dashboard";
-    }
+//    @RequestMapping(value = "/category/add",method = RequestMethod.POST)
+//    public String addCategory(@ModelAttribute("bookProfile") BookProfile bookProfile) {
+//        // Save the bookProfile to the database
+//        bookService.saveBookProfile(bookProfile);
+//        return "redirect:/webc/dashboard";
+//    }
 
 
 //    @GetMapping("/details/{bookId}")
