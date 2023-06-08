@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IUserRepository extends JpaRepository<Member,Long> {
+public interface IMemberRepository extends JpaRepository<Member,Long> {
 //        List<User> findByFirstName(String fName);
 //        List<User> findByLastName(String lName);
 //        List<User> findByCity(String city);

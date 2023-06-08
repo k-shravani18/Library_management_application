@@ -32,6 +32,14 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Book> memberBooks;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "member")
+    @JoinColumn(name = "member_id")
+    private IssueBook issueBook;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "member")
+    @JoinColumn(name = "member_id")
+    private ReturnBook returnBook;
+
     // Getters and setters
 
 }

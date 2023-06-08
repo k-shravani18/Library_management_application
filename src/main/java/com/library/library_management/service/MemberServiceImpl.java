@@ -1,68 +1,68 @@
 package com.library.library_management.service;
 
 import com.library.library_management.exceptions.BookNotFoundException;
-import com.library.library_management.exceptions.UserNotFoundException;
+import com.library.library_management.exceptions.MemberNotFoundException;
 import com.library.library_management.model.Address;
 import com.library.library_management.model.Member;
-import com.library.library_management.repository.IUserRepository;
+import com.library.library_management.repository.IMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class UserServiceImpl implements IUserService {
+public class MemberServiceImpl implements IMemberService {
     @Autowired
-    private IUserRepository userRepository;
+    private IMemberRepository memberRepository;
 
 @Override
-public void addMember(Member user, Address address) {
-    if (user.getAddresses() == null) {
-        user.setAddresses(new ArrayList<>());
+public void addMember(Member member, Address address) {
+    if (member.getAddresses() == null) {
+        member.setAddresses(new ArrayList<>());
     }
     if (address.getMembers() == null) {
         address.setMembers(new ArrayList<>());
     }
 
-    user.getAddresses().add(address);
-    address.getMembers().add(user);
-    userRepository.save(user);
+    member.getAddresses().add(address);
+    address.getMembers().add(member);
+    memberRepository.save(member);
 }
 
     @Override
     public String updateUser(Member member) {
-        Member existUser =userRepository.findById(member.getMemberId()).orElse(null);
+        Member existUser = memberRepository.findById(member.getMemberId()).orElse(null);
         if (existUser==null){
-            throw new UserNotFoundException("User Not Found");
+            throw new MemberNotFoundException("User Not Found");
 
         }else {
-            userRepository.save(existUser);
+            memberRepository.save(existUser);
             return "User updated successfully";
         }
     }
 
     @Override
-    public String deleteUser(Member user) {
-        Member existUser =userRepository.findById(user.getMemberId()).orElse(null);
+    public String deleteUser(Member member) {
+        Member existUser = memberRepository.findById(member.getMemberId()).orElse(null);
         if (existUser==null){
-            throw new BookNotFoundException("User Not Found");
+            throw new BookNotFoundException("Member Not Found");
 
         }else {
-            userRepository.delete(existUser);
+            memberRepository.delete(existUser);
             return "User Removed successfully";
         }
     }
 
     @Override
     public List<Member> getAll() {
-        List<Member> users=userRepository.findAll();
+        List<Member> users= memberRepository.findAll();
         return users;
     }
 
     @Override
     public Member getById(Long id) {
-        return userRepository.findById(id).orElseThrow(
-                ()-> new UserNotFoundException("User Not Found "+id)
+        return memberRepository.findById(id).orElseThrow(
+                ()-> new MemberNotFoundException("User Not Found "+id)
         );
     }
 

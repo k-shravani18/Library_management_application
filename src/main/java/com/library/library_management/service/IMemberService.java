@@ -4,7 +4,7 @@ import com.library.library_management.model.Address;
 import com.library.library_management.model.Member;
 
 import java.util.List;
-public interface IUserService {
+public interface IMemberService {
     //crud operarions
     void addMember(Member member, Address address);
     String updateUser(Member user);
