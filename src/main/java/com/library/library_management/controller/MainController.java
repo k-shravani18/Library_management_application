@@ -1,7 +1,10 @@
 package com.library.library_management.controller;
 
 import com.library.library_management.model.*;
+import com.library.library_management.service.impl.AuthorServiceImpl;
 import com.library.library_management.service.impl.BookServiceImpl;
+import com.library.library_management.service.impl.CategoryServiceImpl;
+import com.library.library_management.service.impl.PublisherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,26 +13,27 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/webc")
-public class NewController {
+public class MainController {
     @Autowired
     private BookServiceImpl bookService;
+    @Autowired
+    private CategoryServiceImpl categoryService;
+    @Autowired
+    private AuthorServiceImpl authorService;
+    @Autowired
+    private PublisherServiceImpl publisherService;
 
-    // Display the login form
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         model.addAttribute("loginForm", new User());
         return "loginForm";
     }
 
-    // Handle the login form submission
     @PostMapping("/processLogin")
     public ModelAndView processLoginForm(@ModelAttribute("loginForm") User user) {
-        // Check if username and password are correct (implement your own logic)
         if (user.getUsername().equals("shravani") && user.getPassword().equals("shravani123")) {
-            // If correct, redirect to the admin form
             return new ModelAndView("redirect:/webc/dashboard");
         } else {
-            // If incorrect, show the login form again with an error message
             ModelAndView modelAndView = new ModelAndView("loginForm");
             modelAndView.addObject("loginForm", user);
             modelAndView.addObject("error", "Invalid username or password");
@@ -43,24 +47,6 @@ public class NewController {
         return new ModelAndView("dashboard");
     }
 
-    //category
-    // Display the category form
-//    @GetMapping("/category")
-//    public String showCategoryForm(Model model) {
-//        model.addAttribute("bookProfile", new BookProfile());
-//        return "categoryForm";
-//    }
-    @GetMapping("/author")
-    public String showAuthorForm(Model model) {
-        model.addAttribute("author", new Author());
-        return "authorForm";
-    }
-
-    @GetMapping("/publisher")
-    public String showPublisherForm(Model model) {
-        model.addAttribute("publisher", new Publisher());
-        return "publisherForm";
-    }
     @GetMapping("/book")
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
@@ -70,40 +56,59 @@ public class NewController {
     @GetMapping("/member")
     public String showRegistrationForm(Model model) {
         model.addAttribute("member", new Member());
-        model.addAttribute("address",new Address());
+        model.addAttribute("address", new Address());
         return "memberForm";
     }
+
     @GetMapping("/issueBook")
     public String showIssueBookForm(Model model) {
-        // Add necessary data to the model if required
         return "issueBook";
     }
 
     @GetMapping("/returnbook")
     public String showReturnBookForm(Model model) {
-        // Add necessary data to the model if required
         return "returnBook";
     }
+    @GetMapping("/category")
+    public String showRegistration(@ModelAttribute("category") Category category) {
+        return "categoryForm";
+    }
 
-    // Handle the category form submission
-    //@PostMapping(value = "/category/add")
-//    @RequestMapping(value = "/category/add",method = RequestMethod.POST)
-//    public String addCategory(@ModelAttribute("bookProfile") BookProfile bookProfile) {
-//        // Save the bookProfile to the database
-//        bookService.saveBookProfile(bookProfile);
-//        return "redirect:/webc/dashboard";
-//    }
+    @PostMapping(value = "/add_category")
+    public String addCategory(@ModelAttribute("category") Category category){
+            categoryService.addCategory(category);
+        return "redirect:/webc/success";
+    }
+    @GetMapping("/success")
+    public String showSuccessPage() {
+        return "success";
+    }
+    @GetMapping("/author")
+    public String showAuthorForm(Model model) {
+        model.addAttribute("author", new Author());
+        return "authorForm";
+    }
+    @PostMapping(value = "/add_author")
+    public String addAuthor(@ModelAttribute("author") Author author){
+        authorService.addAuthor(author);
+        return "redirect:/webc/success";
+    }
+    @GetMapping("/publisher")
+    public String showPublisherForm(Model model) {
+        model.addAttribute("publisher", new Publisher());
+        return "publisherForm";
+    }
+    @PostMapping(value = "/add_publisher")
+    public String addPublisher(@ModelAttribute("author") Publisher publisher){
+        publisherService.addPublisher(publisher);
+        return "redirect:/webc/success";
+    }
 
 
-//    @GetMapping("/details/{bookId}")
-//    public String showBookDetails(@PathVariable("bookId") Long bookId, Model model) {
-//        Book book = bookService.getById(bookId);
-//        if (book == null) {
-//            return "error-page"; // or any other appropriate view
-//        }
-//        model.addAttribute("book", book);
-//        return "book-list";
-//    }
+
+
+
+
 
 
 

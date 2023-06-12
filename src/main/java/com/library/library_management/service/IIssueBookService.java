@@ -4,11 +4,12 @@ import com.library.library_management.model.IssueBook;
 import java.util.List;
 
 public interface IIssueBookService {
-    IssueBook addIssueBook(IssueBook issueBook);
+    public void issueBook(IssueBook issueBook, Long memberId);
     String updateIssueBook(IssueBook issueBook);
     String deleteIssueBook(IssueBook  issueBook);
     IssueBook getById(Long issue_book_id);
     List<IssueBook>getAll();
+
 
 
     //custom operations

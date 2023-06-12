@@ -100,16 +100,16 @@
     <div class="section">
         <h1>Category</h1>
 
-        <form:form action="${pageContext.request.contextPath}/webc/category/add">
+        <form:form action="/webc/add_category">
 
             <div class="link-boxes" style="flex-direction:column">
-            <label for ="category"> Category</label>
-                <input id="category"type="text" name="category" class="action-button" />
+            <label for ="categoryName"> Category</label>
+                <input id="category"type="text" name="categoryName" class="action-button" />
             </div>
         </form:form>
 
         <div class="link-boxes">
-             <form:form action="/${pageContext.request.contextPath}category/add">
+             <form:form action="/webc/add_category">
                 <input type="submit" value="Add" class="action-button" />
             </form:form>
             <form:form action="${pageContext.request.contextPath}/category/edit">

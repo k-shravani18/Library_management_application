@@ -101,7 +101,7 @@
     <div class="section">
         <h1>Author Management</h1>
 
-        <form:form action="/author/add" method="post">
+        <form:form action="/webc/add_author" method="post">
             <div class="link-boxes" style="flex-direction: column">
                 <label for="name">Name</label>
                 <input id="name" type="text" name="name" class="action-button" />
@@ -115,9 +115,11 @@
             </div>
 
             <div class="link-boxes">
+            <form:form action="/webc/add_author">
                 <input type="submit" value="Add" class="action-button" />
                 <input type="submit" value="Edit" class="action-button" />
                 <input type="submit" value="Delete" class="action-button" />
+             </form:form>
             </div>
         </form:form>
 

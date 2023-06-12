@@ -102,7 +102,7 @@
     <div class="section">
         <h1>Publisher</h1>
 
-        <form:form action="/publisher/add" method="post">
+        <form:form action="/webc/add_publisher" method="post">
             <div class="link-boxes">
                 <label for="name">Name</label>
                 <input id="name" type="text" name="name" class="action-button" />

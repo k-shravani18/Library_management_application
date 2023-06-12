@@ -18,6 +18,6 @@
     </style>
 </head>
 <body>
-    <h2>${message}</h2>
+    <h2>added succesfully </h2>
 </body>
 </html>

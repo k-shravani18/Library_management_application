@@ -18,7 +18,6 @@ public class Member {
     private Long memberId;
 
     private String name;
-    private String age;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

@@ -4,7 +4,10 @@ import com.library.library_management.model.Category;
 import com.library.library_management.service.ICategoryService;
 import com.library.library_management.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -15,8 +18,19 @@ public class CategoryController {
     @Autowired
     private CategoryServiceImpl categoryService;
 
-    public Category addCategory(@ModelAttribute Category category){
-        return categoryService.addCategory(category);
+    @GetMapping("/category")
+    public String showRegistration(@ModelAttribute("category") Category category) {
+        return "categoryForm";
+    }
+
+    @PostMapping(value = "/add_category")
+    public String addCategory(@ModelAttribute("category") Category category){
+        categoryService.addCategory(category);
+        return "redirect:/category/success";
+    }
+    @GetMapping("/success")
+    public String showSuccessPage() {
+        return "success";
     }
 
 

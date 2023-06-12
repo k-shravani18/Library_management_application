@@ -6,11 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMemberRepository extends JpaRepository<Member,Long> {
-//        List<User> findByFirstName(String fName);
-//        List<User> findByLastName(String lName);
-//        List<User> findByCity(String city);
-//        List<User> findByStreet(String street);
-//        List<User> findByState(String state);
-//        List<User> findByZipcode(String zipcode);
-//        User findByFnameAndLname(String fName, String lName);
+//        List<Member> findByFirstName(String fName);
+//        List<Member> findByLastName(String lName);
+//        List<Member> findByCity(String city);
+//        List<Member> findByStreet(String street);
+//        List<Member> findByState(String state);
+//        List<Member> findByZipcode(String zipcode);
+
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Issue Book</title>
+    <title>Register Form</title>
     <style>
         /* Add your custom CSS styles here */
         body {
@@ -21,7 +21,6 @@
             margin: 5px;
             text-align: start;
         }
-
         .section {
             background-color: #778899;
             padding: 20px;
@@ -34,22 +33,22 @@
 
         .link-boxes {
             display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            margin-bottom: 50px;
         }
 
         .action-button {
-            display: block;
+            display: inline-block;
             background-color: #F5F5F5; /* White Smoke */
             color: #333;
             border: none;
-            padding: 10px;
+            padding: 10px 30px 10px 30px;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
             text-decoration: none;
-            width: 100%;
-            margin-bottom: 5px;
+            width: -webkit-fill-available;
+            margin-bottom: 2px;
         }
 
         .action-button:last-child {
@@ -77,51 +76,55 @@
         .cancel-button:hover {
             background-color: #E8E8E8;
         }
+
+        .logout-button {
+            display: block;
+            background-color: #F5F5F5; /* White Smoke */
+            color: #333;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px; /* Added margin-top for positioning */
+            width: 100%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .logout-button:hover {
+            background-color: #E8E8E8;
+        }
     </style>
 </head>
 <body>
     <div class="section">
-        <h1>Issue Book</h1>
+        <h1>Register Form</h1>
 
-        <form:form method="POST" action="/issue/addForm">
-            <div class="link-boxes">
-                <label for="memberId">Member ID</label>
-                <input id="memberId" type="number" name="memberId" class="action-button" />
-                        </div>
+        <form:form action="/auth-api/processRegister" method="post" modelAttribute="user">
 
-            <div class="link-boxes">
-                <label for="memberName">Member Name</label>
-                <input id="memberName" type="text" name="name" class="action-button" />
+            <div class="link-boxes" style="flex-direction: column;">
+                <label for="username">Username</label>
+                <form:input path="username" id="username" class="action-button" />
             </div>
 
-            <div class="link-boxes">
-                <label for="book">Book</label>
-                <select id="book" name="book" class="action-button">
-                    <option value="book1">Book 1</option>
-                    <option value="book2">Book 2</option>
-                    <option value="book3">Book 3</option>
-                </select>
+            <div class="link-boxes" style="flex-direction: column;">
+                <label for="password">Password</label>
+                <form:password path="password" id="password" class="action-button" />
             </div>
 
-            <div class="link-boxes">
-                <label for="issueDate">Issue Date</label>
-                <input id="issueDate" type="date" name="issueDate" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <label for="returnDate">Return Date</label>
-                <input id="returnDate" type="date" name="returnDate" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <input type="submit" value="Issue" class="action-button" />
-                <input type="submit" value="Edit" class="action-button" />
-                <input type="submit" value="Delete" class="action-button" />
-            </div>
+            <input type="submit" value="Register" class="action-button" />
         </form:form>
 
-        <form:form action="/admin/cancel">
-            <input type="submit" value="Cancel" class="cancel-button" />
+        <form:form action="/login" method="get">
+            <input type="submit" value="Login" class="action-button" />
+        </form:form>
+
+        <form:form action="/forgot-password" method="get">
+            <input type="submit" value="Forgot Password" class="action-button" />
+        </form:form>
+
+        <form:form action="/cancel" style="display: flex; justify-content: center;">
+            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
         </form:form>
     </div>
 </body>
