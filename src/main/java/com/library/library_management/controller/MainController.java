@@ -69,20 +69,7 @@ public class MainController {
     public String showReturnBookForm(Model model) {
         return "returnBook";
     }
-    @GetMapping("/category")
-    public String showRegistration(@ModelAttribute("category") Category category) {
-        return "categoryForm";
-    }
 
-    @PostMapping(value = "/add_category")
-    public String addCategory(@ModelAttribute("category") Category category){
-            categoryService.addCategory(category);
-        return "redirect:/webc/success";
-    }
-    @GetMapping("/success")
-    public String showSuccessPage() {
-        return "success";
-    }
     @GetMapping("/author")
     public String showAuthorForm(Model model) {
         model.addAttribute("author", new Author());
@@ -99,7 +86,7 @@ public class MainController {
         return "publisherForm";
     }
     @PostMapping(value = "/add_publisher")
-    public String addPublisher(@ModelAttribute("author") Publisher publisher){
+    public String addPublisher(@ModelAttribute("publisher") Publisher publisher){
         publisherService.addPublisher(publisher);
         return "redirect:/webc/success";
     }

@@ -15,7 +15,7 @@ public class PublisherServiceImpl implements IPublisherService {
 
     @Override
     public Publisher addPublisher(Publisher Publisher) {
-        return null;
+        return publisherRepository.save(Publisher);
     }
 
     @Override

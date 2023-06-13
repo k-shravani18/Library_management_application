@@ -72,6 +72,13 @@
             transition: background-color 0.3s;
             text-decoration: none;
         }
+        .separator {
+            height: 4px;
+            width: 106%;
+            background-color: #fff;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
 
         .cancel-button:hover {
             background-color: #E8E8E8;
@@ -100,25 +107,49 @@
     <div class="section">
         <h1>Category</h1>
 
-        <form:form action="/webc/add_category">
+        <form:form action="/category/add_category">
 
             <div class="link-boxes" style="flex-direction:column">
             <label for ="categoryName"> Category name</label>
                 <input id="categoryName"type="text" name="categoryName" class="action-button" />
             </div>
+            <input type="submit" value="Add Category" class="action-button" />
+        </form:form>
 
-            <div class="link-boxes">
-             <input type="submit" value="Add" class="action-button" />
-              <input type="button" value="Edit" class="action-button" />
-               <input type="button" value="Delete" class="action-button" />
+<div class="separator"></div>
+                <div><h3>Edit Category</h3></div>
+        <form:form method="GET" action="/category/editCategory">
+                    <div class="link-boxes">
+                        <label for="categoryId">Category ID</label>
+                        <input id="categoryId" type="text" name="categoryId" class="action-button" placeholder="Enter Valid Category ID" required/>
+                    </div>
+
+                    <input type="submit" value="Edit Category" class="action-button" />
+                </form:form>
+
+            <div class="separator"></div>
+                    <div><h3>Delete Category</h3></div>
+            <div>
+                <form method="GET" action="/category/delete">
+                    <div class="link-boxes">
+                        <label for="categoryId">Category ID</label>
+                        <input id="categoryId" type="text" name="categoryId" class="action-button" placeholder="Enter Valid Category ID" />
+                    </div>
+                    <input type="submit" value="Delete Category" class="action-button" />
+                </form>
             </div>
-        </form:form>
-        <form:form action="/category/cancel" style="
-                                              display: flex;
-                                              justify-content: center;
-                                          ">
-            <input type="button" value="Cancel" class="cancel-button" style="width: 130px;" />
-        </form:form>
+
+            <div class="separator"></div>
+            <div><h3>Show All Categories</h3></div>
+                <div>
+                    <form method="GET" action="/category/allCategories">
+                        <input type="submit" value="Show All Categories" class="action-button" />
+                    </form>
+                </div>
+
+            <div class="separator"></div>
+        <a href="/webc/dashboard" class="cancel-button">Cancel</a>
     </div>
+   
 </body>
 </html>

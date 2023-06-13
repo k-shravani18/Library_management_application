@@ -16,7 +16,8 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long publisherId;
-    private String publisherName;
+    private String name;
+    private Long phone;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private List<Book> Books;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)

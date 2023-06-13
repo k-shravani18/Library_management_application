@@ -102,8 +102,8 @@
     <div class="section">
         <h1>Publisher</h1>
 
-        <form:form action="/webc/add_publisher" method="post">
-            <div class="link-boxes">
+        <form:form action="/webc/add_publisher">
+            <div class="link-boxes" style="flex-direction:column">
                 <label for="name">Name</label>
                 <input id="name" type="text" name="name" class="action-button" />
 
@@ -130,5 +130,24 @@
             <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
         </form:form>
     </div>
+  <!-- Existing code for the form -->
+
+  <div class="section">
+      <!-- Existing form code -->
+
+      <!-- Table to display publisher details -->
+      <table>
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+              </tr>
+          </thead>
+          <tbody id="publisherTableBody"></tbody>
+      </table>
+  </div>
+
 </body>
 </html>

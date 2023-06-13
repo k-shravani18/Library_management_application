@@ -58,7 +58,7 @@
     <div class="section">
         <h1 class="dashboard-title">Admin Dashboard</h1>
 
-        <form:form action="${pageContext.request.contextPath}/webc/category" method="get" id="categoryForm">
+        <form:form action="${pageContext.request.contextPath}/category/category_form" method="get" id="categoryForm">
                     <button type="submit" class="action-button">Category</button>
                 </form:form>
 

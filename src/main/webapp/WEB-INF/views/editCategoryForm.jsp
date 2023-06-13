@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Author Management</title>
+    <title>Edit Member</title>
     <style>
         /* Add your custom CSS styles here */
         body {
@@ -34,22 +34,22 @@
 
         .link-boxes {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 50px;
+            flex-direction: column;
+            margin-bottom: 20px;
         }
 
         .action-button {
-            display: inline-block;
+            display: block;
             background-color: #F5F5F5; /* White Smoke */
             color: #333;
             border: none;
-            padding: 10px 30px 10px 30px;
+            padding: 10px;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
             text-decoration: none;
-            width: -webkit-fill-available;
-            margin-bottom: 10px;
+            width: 100%;
+            margin-bottom: 5px;
         }
 
         .action-button:last-child {
@@ -58,6 +58,24 @@
 
         .action-button:hover {
             background-color: #E8E8E8;
+        }
+        .edit-button {
+            display: block;
+            background-color: #00FF00; /* Green */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .edit-button:hover {
+            background-color: #009900;
         }
 
         .cancel-button {
@@ -77,52 +95,22 @@
         .cancel-button:hover {
             background-color: #E8E8E8;
         }
-
-        .logout-button {
-            display: block;
-            background-color: #F5F5F5; /* White Smoke */
-            color: #333;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px; /* Added margin-top for positioning */
-            width: 100%;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
-
-        .logout-button:hover {
-            background-color: #E8E8E8;
-        }
     </style>
 </head>
 <body>
     <div class="section">
-        <h1>Author Management</h1>
+        <h1>Edit Category</h1>
 
-        <form:form action="/webc/add_author">
+        <form:form method="PUT" action="/category/updateCategory">
+            <input type="hidden" name="categoryId" value="${category.categoryId}" />
 
-            <div class="link-boxes" style="flex-direction: column">
-                <label for="AuthorName">Author Name</label>
-                <input id="AuthorName" type="text" name="AuthorName" class="action-button" />
-                <label for="country">Country</label>
-                <select id="country" name="country" class="action-button">
-                    <option value="USA">USA</option>
-                    <option value="UK">UK</option>
-                    <option value="Canada">Canada</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
             <div class="link-boxes">
-                <input type="submit" value="Add" class="action-button" />
-                <input type="button" value="Edit" class="action-button" />
-                <input type="button" value="Delete" class="action-button" />
+                <label for="CategoryName">CategoryName</label>
+                <input id="CategoryName" type="text" name="CategoryName" value="${category.categoryName}" class="action-button" required/>
             </div>
-        </form:form>
 
-        <form:form action="/admin/cancel" method="post" style="display: flex; justify-content: center;">
-            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
+        <input type="submit" value="Update" class="edit-button" />
+            <a href="/webc/dashboard" class="cancel-button">Cancel</a>
         </form:form>
     </div>
 </body>
