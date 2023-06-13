@@ -13,14 +13,15 @@ import java.nio.charset.StandardCharsets;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl {
-
+        @Autowired
         private IUserRepository userRepository;
 
         public boolean isValidBasicAuth(String authHeader){
             if(StringUtils.hasText(authHeader)&& authHeader.toLowerCase().startsWith("basic")){
                 String base64Credentials = authHeader.substring("Basic ".length()).trim();
 
-                byte[] decodeCredentials = Base64Utils.decodeFromString(authHeader);
+
+                byte[] decodeCredentials = Base64Utils.decodeFromString(base64Credentials);
                 String credentials = new String(decodeCredentials, StandardCharsets.UTF_8);
 
                 final String[] val = credentials.split(":", 2);
@@ -34,5 +35,9 @@ public class AuthServiceImpl {
                 }
             }
             return false;
+        }
+
+        public  User findByUnameAndPass(String username , String password){
+            return userRepository.findByUnameAndPass(username,password);
         }
 }

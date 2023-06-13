@@ -103,29 +103,21 @@
         <form:form action="/webc/add_category">
 
             <div class="link-boxes" style="flex-direction:column">
-            <label for ="categoryName"> Category</label>
-                <input id="category"type="text" name="categoryName" class="action-button" />
+            <label for ="categoryName"> Category name</label>
+                <input id="categoryName"type="text" name="categoryName" class="action-button" />
+            </div>
+
+            <div class="link-boxes">
+             <input type="submit" value="Add" class="action-button" />
+              <input type="button" value="Edit" class="action-button" />
+               <input type="button" value="Delete" class="action-button" />
             </div>
         </form:form>
-
-        <div class="link-boxes">
-             <form:form action="/webc/add_category">
-                <input type="submit" value="Add" class="action-button" />
-            </form:form>
-            <form:form action="${pageContext.request.contextPath}/category/edit">
-                <input type="submit" value="Edit" class="action-button" />
-            </form:form>
-
-            <form:form action="/category/delete">
-                <input type="submit" value="Delete" class="action-button" />
-            </form:form>
-        </div>
-
         <form:form action="/category/cancel" style="
                                               display: flex;
                                               justify-content: center;
                                           ">
-            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
+            <input type="button" value="Cancel" class="cancel-button" style="width: 130px;" />
         </form:form>
     </div>
 </body>

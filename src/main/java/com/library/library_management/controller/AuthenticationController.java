@@ -2,11 +2,18 @@ package com.library.library_management.controller;
 
 import com.library.library_management.model.User;
 import com.library.library_management.repository.IUserRepository;
+import com.library.library_management.service.impl.AuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 
 @Controller()
 @RequestMapping("/auth-api")
@@ -14,6 +21,9 @@ public class AuthenticationController {
 
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private AuthServiceImpl authService;
 
     @GetMapping("/register")
     public String showRegistration(@ModelAttribute("user") User user) {
@@ -35,11 +45,16 @@ public class AuthenticationController {
 
     // Handle the login form submission
     @PostMapping("/processLogin")
-    public ModelAndView processLoginForm(@ModelAttribute("loginForm") User user) {
+    public ModelAndView processLoginForm(@ModelAttribute("loginForm") User user, HttpServletRequest request) {
         // Check if username and password are correct (implement your own logic)
-        if (user.getUsername().equals("shravani") && user.getPassword().equals("shravani123")) {
+        User validUser = authService.findByUnameAndPass(user.getUsername(), user.getPassword());
+        if (validUser != null) {
+            String sourceCode = user.getUsername()+":"+user.getPassword();
+            String encode = "Basic "+ Base64Utils.encodeToString(sourceCode.getBytes(StandardCharsets.UTF_8));
+            HttpSession session = request.getSession();
+            session.setAttribute("auth-token", encode);
             // If correct, redirect to the admin form
-            return new ModelAndView("redirect:/webc/dashboard");
+                return new ModelAndView("redirect:/webc/dashboard");
         } else {
             // If incorrect, show the login form again with an error message
             ModelAndView modelAndView = new ModelAndView("loginForm");
