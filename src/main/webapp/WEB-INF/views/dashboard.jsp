@@ -63,12 +63,12 @@
                 </form:form>
 
 
-                <form:form action="${pageContext.request.contextPath}/webc/author" method="get">
+                <form:form action="${pageContext.request.contextPath}/author/author_form" method="get" id="authorForm">
                     <button type="submit" class="action-button">Author</button>
                 </form:form>
 
 
-                <form:form action="${pageContext.request.contextPath}/webc/publisher" method="get" id="publisherForm">
+                <form:form action="${pageContext.request.contextPath}/publisher/publisher_form" method="get" id="publisherForm">
                     <button type="submit" class="action-button">Publisher</button>
                 </form:form>
 

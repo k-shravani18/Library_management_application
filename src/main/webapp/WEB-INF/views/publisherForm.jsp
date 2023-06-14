@@ -14,7 +14,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+
         }
 
         label {
@@ -51,6 +51,13 @@
             text-decoration: none;
             width: -webkit-fill-available;
             margin-bottom: 10px;
+        }
+        .separator {
+            height: 4px;
+            width: 106%;
+            background-color: #fff;
+            margin-top: 20px;
+            margin-bottom: 15px;
         }
 
         .action-button:last-child {
@@ -102,52 +109,56 @@
     <div class="section">
         <h1>Publisher</h1>
 
-        <form:form action="/webc/add_publisher">
+        <form:form action="/publisher/add_publisher" modelAttribute="publisher">
             <div class="link-boxes" style="flex-direction:column">
                 <label for="name">Name</label>
                 <input id="name" type="text" name="name" class="action-button" />
 
-                <label for="address">Address</label>
-                <select id="address" name="address" class="action-button">
-                    <option value="Address 1">Address 1</option>
-                    <option value="Address 2">Address 2</option>
-                    <option value="Address 3">Address 3</option>
-                    <!-- Add more options as needed -->
-                </select>
+                <label for="addressList[0].location">Address</label>
+                    <input id="addressList[0].location" type="text" name="addressList[0].location" class="action-button" placeholder="Enter Location" required />
 
-                <label for="phone">Phone</label>
-                <input id="phone" type="number" name="phone" class="action-button" />
-            </div>
+                    <label for="addressList[0].phoneNumber">Phone Number</label>
+                    <input id="addressList[0].phoneNumber" type="text" name="addressList[0].phoneNumber" class="action-button" placeholder="Enter Phone number" required />
 
-            <div class="link-boxes">
-                <input type="submit" value="Add" class="action-button" />
-                <input type="submit" value="Edit" class="action-button" />
-                <input type="submit" value="Delete" class="action-button" />
-            </div>
+                    <div class="link-boxes">
+                        <input type="submit" value="Add" class="action-button" />
+                    </div>
         </form:form>
 
-        <form:form action="/admin/cancel" method="post" style="display: flex; justify-content: center;">
-            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
-        </form:form>
-    </div>
-  <!-- Existing code for the form -->
+                     <div class="separator"></div>
+                        <div><h3>Edit Publisher</h3></div>
+                        <form:form method="GET" action="/publisher/editPublisher">
+                            <div class="link-boxes">
+                                <label for="publisherId">Publisher ID</label>
+                                <input id="publisherId" type="text" name="publisherId" class="action-button" placeholder="Enter Valid publisher ID" required/>
+                            </div>
 
-  <div class="section">
-      <!-- Existing form code -->
+                            <input type="submit" value="Edit Publisher" class="action-button" />
+                        </form:form>
 
-      <!-- Table to display publisher details -->
-      <table>
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>Phone</th>
-              </tr>
-          </thead>
-          <tbody id="publisherTableBody"></tbody>
-      </table>
-  </div>
+                     <div class="separator"></div>
+                        <div><h3>Delete Publisher</h3></div>
+                                <div>
+                                 <form method="GET" action="/publisher/delete">
+                                    <div class="link-boxes">
+                                        <label for="publisherId">Publisher ID</label>
+                                        <input id="publisherId" type="text" name="publisherId" class="action-button" placeholder="Enter Valid Publisher ID" />
+                                    </div>
+                                 <input type="submit" value="Delete Publisher" class="action-button" />
+                               </form>
+                         </div>
+
+                    <div class="separator"></div>
+                    <div><h3>Show All Publishers</h3></div>
+                        <div>
+                            <form method="GET" action="/publisher/allPublishers">
+                                <input type="submit" value="Show All Publishers" class="action-button" />
+                            </form>
+                        </div>
+
+                    <div class="separator"></div>
+                <a href="/webc/dashboard" class="cancel-button">Cancel</a>
+            </div>
 
 </body>
 </html>

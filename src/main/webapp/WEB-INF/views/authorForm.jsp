@@ -14,7 +14,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+
+            flex-direction: column;
+             overflow-y: auto;
         }
 
         label {
@@ -30,12 +32,15 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 350px; /* Increased width */
             color: #fff;
+            margin-bottom: 20px;
+
         }
 
         .link-boxes {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
+            flex-direction: column;
         }
 
         .action-button {
@@ -48,9 +53,16 @@
             cursor: pointer;
             transition: background-color 0.3s;
             text-decoration: none;
-            width: -webkit-fill-available;
+            width: 100%;
             margin-bottom: 10px;
         }
+        .separator {
+                    height: 4px;
+                    width: 106%;
+                    background-color: #fff;
+                    margin-top: 20px;
+                    margin-bottom: 15px;
+                }
 
         .action-button:last-child {
             margin-right: 0; /* Remove margin-right for the last button */
@@ -101,29 +113,57 @@
     <div class="section">
         <h1>Author Management</h1>
 
-        <form:form action="/webc/add_author">
+        <form:form action="/author/add_author">
 
             <div class="link-boxes" style="flex-direction: column">
                 <label for="AuthorName">Author Name</label>
                 <input id="AuthorName" type="text" name="AuthorName" class="action-button" />
+             </div
+             <div>
                 <label for="country">Country</label>
                 <select id="country" name="country" class="action-button">
+                    <option value="INDIA">INDIA</option>
                     <option value="USA">USA</option>
                     <option value="UK">UK</option>
                     <option value="Canada">Canada</option>
-                    <!-- Add more options as needed -->
                 </select>
+                 <input type="submit" value="Add" class="action-button" />
             </div>
-            <div class="link-boxes">
-                <input type="submit" value="Add" class="action-button" />
-                <input type="button" value="Edit" class="action-button" />
-                <input type="button" value="Delete" class="action-button" />
-            </div>
-        </form:form>
+          </form:form>
 
-        <form:form action="/admin/cancel" method="post" style="display: flex; justify-content: center;">
-            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
-        </form:form>
-    </div>
+            <div class="separator"></div>
+                 <div><h3>Edit Author</h3></div>
+                 <form:form method="GET" action="/author/editAuthor">
+                     <div class="link-boxes">
+                         <label for="authorId">Author ID</label>
+                         <input id="authorId" type="text" name="authorId" class="action-button" placeholder="Enter Valid Author ID" required/>
+                     </div>
+
+                     <input type="submit" value="Edit Author" class="action-button" />
+                 </form:form>
+
+              <div class="separator"></div>
+                     <div><h3>Delete Author</h3></div>
+                      <div>
+                          <form method="GET" action="/author/delete">
+                             <div class="link-boxes">
+                              <label for="authorId">Author ID</label>
+                                 <input id="authorId" type="text" name="authorId" class="action-button" placeholder="Enter Valid Author ID" />
+                             </div>
+                              <input type="submit" value="Delete Author" class="action-button" />
+                            </form>
+                      </div>
+
+             <div class="separator"></div>
+             <div><h3>Show All Authors</h3></div>
+                 <div>
+                     <form method="GET" action="/author/allAuthors">
+                         <input type="submit" value="Show All Authors" class="action-button" />
+                     </form>
+                 </div>
+
+                         <div class="separator"></div>
+                     <a href="/webc/dashboard" class="cancel-button">Cancel</a>
+                 </div>
 </body>
 </html>

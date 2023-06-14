@@ -5,21 +5,14 @@ import com.library.library_management.model.Member;
 
 import java.util.List;
 public interface IMemberService {
-    //crud operarions
-    void addMember(Member member);
-    String updateUser(Member user);
-    String deleteUser(Member user);
-    List<Member> getAll();
+    void addMember(Member member, Address address);
+    Member updateMember(Member member, Address address);
+
+    void deleteMember(Member member);
+    public List<Member> getAllMembers();
+
     Member getById(Long id);
-//
-//    //custom operations
-//    List<User> getByFirstName(String fName);
-//    List<User> getByLastName(String lName);
-//    List<User> getByCity(String city);
-//    List<User> getByStreet(String street);
-//    List<User> getByState(String state);
-//    List<User> getByZipcode(String zipcode);
-//    User getByFnameAndLname(String fName, String lName);
+
 
 
 }

@@ -17,18 +17,16 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
 
-    private String streetName;
-    private String city;
-    private String state;
-    private String zipcode;
+
+    private String location;
+    private String phoneNumber;
 
     @ManyToMany(mappedBy = "addresses")
     private List<Member> members;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    // Getters and setters
 }
 

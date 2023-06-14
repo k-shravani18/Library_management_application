@@ -70,26 +70,8 @@ public class MainController {
         return "returnBook";
     }
 
-    @GetMapping("/author")
-    public String showAuthorForm(Model model) {
-        model.addAttribute("author", new Author());
-        return "authorForm";
-    }
-    @PostMapping(value = "/add_author")
-    public String addAuthor(@ModelAttribute("author") Author author){
-        authorService.addAuthor(author);
-        return "redirect:/webc/success";
-    }
-    @GetMapping("/publisher")
-    public String showPublisherForm(Model model) {
-        model.addAttribute("publisher", new Publisher());
-        return "publisherForm";
-    }
-    @PostMapping(value = "/add_publisher")
-    public String addPublisher(@ModelAttribute("publisher") Publisher publisher){
-        publisherService.addPublisher(publisher);
-        return "redirect:/webc/success";
-    }
+
+
 
 
 
