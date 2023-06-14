@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book Management</title>
+    <title>Delete Member</title>
     <style>
         /* Add your custom CSS styles here */
         body {
@@ -77,64 +77,62 @@
         .cancel-button:hover {
             background-color: #E8E8E8;
         }
+
+        .delete-button {
+            display: block;
+            background-color: #FF0000; /* Red */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .delete-button:hover {
+            background-color: #CC0000;
+        }
+
+        .readonly-field {
+            background-color: #F5F5F5; /* White Smoke */
+            color: #333;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="section">
-        <h1>Book</h1>
+        <h1>Delete Member</h1>
 
-        <form:form action="/book/add">
+        <form:form method="POST" action="/member/deleteMember">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="hidden" name="memberId" value="${member.memberId}" />
+
             <div class="link-boxes">
-                <label for="bookName">Book Name</label>
-                <input id="bookName" type="text" name="bookName" class="action-button" />
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" value="${member.name}" class="readonly-field" readonly="true" />
             </div>
 
             <div class="link-boxes">
-                <label for="category">Category</label>
-                <select id="category" name="category" class="action-button">
-                    <option value="category1">Category 1</option>
-                    <option value="category2">Category 2</option>
-                    <option value="category3">Category 3</option>
-                </select>
+                <label for="location">Address</label>
+                <input id="location" type="text" name="location" value="${member.addresses[0].location}" class="readonly-field" readonly="true" />
             </div>
 
             <div class="link-boxes">
-                <label for="author">Author</label>
-                <input id="author" type="text" name="author" class="action-button" />
+                <label for="phoneNumber">Phone Number</label>
+                <input id="phoneNumber" type="text" name="phoneNumber" value="${member.addresses[0].phoneNumber}" class="readonly-field" readonly="true" />
             </div>
 
-            <div class="link-boxes">
-                <label for="publisher">Publisher</label>
-                <select id="publisher" name="publisher" class="action-button">
-                    <option value="publisher1">Publisher 1</option>
-                    <option value="publisher2">Publisher 2</option>
-                    <option value="publisher3">Publisher 3</option>
-                </select>
-            </div>
-
-            <div class="link-boxes">
-                <label for="pages">Number of Pages</label>
-                <input id="pages" type="number" name="pages" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <label for="edition">Edition</label>
-                <input id="edition" type="text" name="edition" class="action-button" />
-            </div>
-
-            <input type="submit" value="Add" class="action-button" />
-        </form:form>
-
-        <form:form action="/book/edit">
-            <input type="submit" value="Edit" class="action-button" />
-        </form:form>
-
-        <form:form action="/book/delete">
-            <input type="submit" value="Delete" class="action-button" />
-        </form:form>
-
-        <form:form action="/admin/cancel" style="display: flex; justify-content: center;">
-            <input type="submit" value="Cancel" class="cancel-button" style="width: 130px;" />
+            <input type="submit" value="Confirm Delete Member" class="delete-button" />
+            <a href="/webmvc/dashboard" class="cancel-button">Cancel</a>
         </form:form>
     </div>
 </body>

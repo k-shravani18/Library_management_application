@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Return Book</title>
+    <title>Issue Book</title>
     <style>
         /* Add your custom CSS styles here */
         body {
@@ -14,7 +14,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
         }
 
         label {
@@ -34,22 +33,22 @@
 
         .link-boxes {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 50px;
+            flex-direction: column;
+            margin-bottom: 20px;
         }
 
         .action-button {
-            display: inline-block;
+            display: block;
             background-color: #F5F5F5; /* White Smoke */
             color: #333;
             border: none;
-            padding: 10px 30px 10px 30px;
+            padding: 10px;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
             text-decoration: none;
-            width: -webkit-fill-available;
-            margin-bottom: 2px;
+            width: 100%;
+            margin-bottom: 5px;
         }
 
         .action-button:last-child {
@@ -58,6 +57,13 @@
 
         .action-button:hover {
             background-color: #E8E8E8;
+        }
+        .separator {
+            height: 4px;
+            width: 106%;
+            background-color: #fff;
+            margin-top: 20px;
+            margin-bottom: 15px;
         }
 
         .cancel-button {
@@ -77,31 +83,21 @@
         .cancel-button:hover {
             background-color: #E8E8E8;
         }
-
-        .logout-button {
-            display: block;
-            background-color: #F5F5F5; /* White Smoke */
-            color: #333;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px; /* Added margin-top for positioning */
-            width: 100%;
-            transition: background-color 0.3s;
-            text-decoration: none;
+        input:invalid {
+            border-color: red;
         }
 
-        .logout-button:hover {
-            background-color: #E8E8E8;
+        input:invalid:focus {
+            outline-color: red;
         }
     </style>
 </head>
 <body>
     <div class="section">
-        <h1>Return Book</h1>
+        <h1>Book Issue Form</h1>
+        <h3>Issue Book</h3>
 
-        <form:form action="/return/add">
+        <form:form method="POST" action="/issue/addForm">
             <div class="link-boxes">
                 <label for="memberId">Member ID</label>
                 <input id="memberId" type="number" name="memberId" class="action-button" />
@@ -109,48 +105,50 @@
 
             <div class="link-boxes">
                 <label for="memberName">Member Name</label>
-                <input id="memberName" type="text" name="memberName" class="action-button" />
+                <input id="memberName" type="text" name="member.name" class="action-button" />
             </div>
 
             <div class="link-boxes">
-                <label for="bookId">Book ID</label>
-                <input id="bookId" type="number" name="bookId" class="action-button" />
+                <label for="book">Book</label>
+                <select id="book" name="book.bookId" class="action-button">
+                    <option value="1">Book 1</option>
+                    <option value="2">Book 2</option>
+                    <option value="8">Book 3</option>
+                </select>
             </div>
 
             <div class="link-boxes">
-                <label for="bookName">Book Name</label>
-                <input id="bookName" type="text" name="bookName" class="action-button" />
+                <label for="issueDate">Issue Date</label>
+                <input id="issueDate" type="date" name="issueDate" class="action-button" />
             </div>
 
             <div class="link-boxes">
                 <label for="returnDate">Return Date</label>
                 <input id="returnDate" type="date" name="returnDate" class="action-button" />
             </div>
-
-            <div class="link-boxes">
-                <label for="daysElapsed">Days Elapsed</label>
-                <input id="daysElapsed" type="number" name="daysElapsed" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <label for="fine">Fine</label>
-                <input id="fine" type="number" name="fine" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <form:form action="/return/add">
-                    <input type="submit" value="Return" class="action-button" />
-                </form:form>
-
-                <form:form action="/return/edit">
-                    <input type="submit" value="Edit" class="action-button" />
-                </form:form>
-            </div>
-
-            <form:form action="/admin/cancel">
-                <input type="submit" value="Cancel" class="cancel-button" />
-            </form:form>
+                <input type="submit" value="Issue" class="action-button" />
         </form:form>
+        <div class="separator"></div>
+        <div><h3>Update Book Issue</h3></div>
+         <form:form method="GET" action="/issue/updateIssue">
+            <div class="link-boxes">
+                <label for="issueBookId">Issue Book ID</label>
+                <input id="issueBookId" type="number" name="issueBookId" class="action-button" placeholder="Enter Valid Issue Book ID" required/>
+            </div>
+
+            <input type="submit" value="Edit Issue Book" class="action-button" />
+        </form:form>
+        <div class="separator"></div>
+        <div><h3>Show All Issued Book Details</h3></div>
+            <div>
+                <form method="GET" action="/issue/allIssuedBooks">
+                    <input type="submit" value="Show All Issued Books Detail" class="action-button" />
+                </form>
+            </div>
+
+        <div class="separator"></div>
+
+        <a href="/webmvc/dashboard" class="cancel-button">Cancel</a>
     </div>
 </body>
 </html>

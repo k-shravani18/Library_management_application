@@ -18,9 +18,9 @@ public class ReturnBook {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bookId")
-    private List<Book> books;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

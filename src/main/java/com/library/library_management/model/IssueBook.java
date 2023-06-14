@@ -19,15 +19,16 @@ public class IssueBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long issueBookId;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="bookId")
-    private List<Book> books;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
 
     private Date issueDate;
     private Date returnDate;
-
 }

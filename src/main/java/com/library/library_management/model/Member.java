@@ -38,6 +38,4 @@ public class Member {
     @JoinColumn(name = "member_id")
     private ReturnBook returnBook;
 
-    // Getters and setters
-
 }

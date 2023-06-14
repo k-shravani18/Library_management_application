@@ -13,8 +13,13 @@ import java.util.List;
 
 @RequestMapping("/member")
 public class MemberController {
-    @Autowired
-    private MemberServiceImpl memberService;
+    private final MemberServiceImpl memberService;
+
+    public MemberController(MemberServiceImpl memberService) {
+        this.memberService = memberService;
+    }
+
+
 
     @GetMapping("/addMember")
     public String showRegistrationForm(Model model) {
@@ -43,7 +48,7 @@ public class MemberController {
     public String registrationSuccess(Model model) {
         String successMessage = "Member Registered Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "memberSuccessForm";
+        return "globalSuccessForm";
     }
 
 
@@ -80,7 +85,7 @@ public class MemberController {
     public String updationSuccess(Model model) {
         String successMessage = "Member Updated Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "memberSuccessForm";
+        return "globalSuccessForm";
     }
 
 
@@ -117,7 +122,7 @@ public class MemberController {
     public String deleteSuccess(Model model) {
         String successMessage = "Member Deleted Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "memberSuccessForm";
+        return "globalSuccessForm";
     }
 
     @GetMapping("/allMembers")
@@ -129,7 +134,8 @@ public class MemberController {
 
     @ExceptionHandler
     private String handlingMemberNotFoundException(Model model) {
-        model.addAttribute("", "MemberNotFoundException");
-        return "memberNotFoundException";
+        String message = "Member Not Found For The Given Member ID";
+        model.addAttribute("message", message);
+        return "globalSuccessForm";
     }
 }

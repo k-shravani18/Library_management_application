@@ -20,7 +20,7 @@ public class CategoryController {
 
     @GetMapping("/category_form")
     public String showRegistration(@ModelAttribute("category") Category category) {
-        return "categoryForm";
+        return "createCategoryForm";
     }
 
     @PostMapping(value = "/add_category")
@@ -30,7 +30,7 @@ public class CategoryController {
     }
     @GetMapping("/success")
     public String showSuccessPage() {
-        return "success";
+        return "successForm";
     }
 
     @GetMapping("/editCategory")
@@ -61,7 +61,7 @@ public class CategoryController {
     public String updationSuccess(Model model) {
         String successMessage = "Category Updated Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "GlobalSuccessForm";
+        return "globalSuccessForm";
     }
 
 
@@ -103,7 +103,7 @@ public class CategoryController {
     public String getAllCategories(Model model) {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
-        return "allCategories";
+        return "getCategories";
     }
     @ExceptionHandler
     private String handlingCategoryNotFoundException(Model model) {

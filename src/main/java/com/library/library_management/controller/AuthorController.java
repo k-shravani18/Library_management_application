@@ -22,7 +22,7 @@ public class AuthorController {
     @GetMapping("/author_form")
     public String showAuthorForm(Model model) {
         model.addAttribute("author", new Author());
-        return "authorForm";
+        return "createAuthorForm";
     }
 
     @PostMapping(value = "/add_author")
@@ -33,7 +33,7 @@ public class AuthorController {
 
     @GetMapping("/success")
     public String showSuccessPage() {
-        return "success";
+        return "successForm";
     }
 
     @GetMapping("/editAuthor")
@@ -65,7 +65,7 @@ public class AuthorController {
     public String updationSuccess(Model model) {
         String successMessage = "Author Updated Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "GlobalSuccessForm";
+        return "globalSuccessForm";
     }
 
 
@@ -99,14 +99,14 @@ public class AuthorController {
     public String deleteSuccess(Model model) {
         String successMessage = "Author Deleted Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "GlobalSuccessForm";
+        return "globalSuccessForm";
     }
 
     @GetMapping("/allAuthors")
     public String getAllAuthors(Model model) {
         List<Author> authors = authorService.getAll();
         model.addAttribute("authors", authors);
-        return "allAuthors";
+        return "getAuthors";
     }
 
     @ExceptionHandler

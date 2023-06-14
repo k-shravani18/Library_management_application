@@ -23,7 +23,7 @@ public class PublisherController {
     public String showPublisherForm(Model model) {
         model.addAttribute("publisher", new Publisher());
         model.addAttribute("address", new Address());
-        return "publisherForm";
+        return "createPublisherForm";
     }
     @PostMapping(value = "/add_publisher")
     public String addPublisher(@ModelAttribute("publisher") Publisher publisher,
@@ -69,7 +69,7 @@ public class PublisherController {
     public String updationSuccess(Model model) {
         String successMessage = "Publisher Updated Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "GlobalSuccessForm";
+        return "globalSuccessForm";
     }
 
 
@@ -106,14 +106,14 @@ public class PublisherController {
     public String deleteSuccess(Model model) {
         String successMessage = "Publisher Deleted Successfully";
         model.addAttribute("successMessage", successMessage);
-        return "GlobalSuccessForm";
+        return "globalSuccessForm";
     }
 
     @GetMapping("/allPublishers")
     public String getAllPublishers(Model model) {
         List<Publisher> publishers = publisherService.getAll();
         model.addAttribute("publishers", publishers);
-        return "allPublishers";
+        return "getPublishers";
     }
     @ExceptionHandler(PublisherNotFoundException.class)
     private String handlingPublisherNotFoundException(Model model) {

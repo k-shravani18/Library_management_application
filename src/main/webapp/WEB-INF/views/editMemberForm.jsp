@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Issue Book</title>
+    <title>Edit Member</title>
     <style>
         /* Add your custom CSS styles here */
         body {
@@ -59,6 +59,24 @@
         .action-button:hover {
             background-color: #E8E8E8;
         }
+        .edit-button {
+            display: block;
+            background-color: #00FF00; /* Green */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .edit-button:hover {
+            background-color: #009900;
+        }
 
         .cancel-button {
             display: block;
@@ -81,47 +99,28 @@
 </head>
 <body>
     <div class="section">
-        <h1>Issue Book</h1>
+        <h1>Edit Member</h1>
 
-        <form:form method="POST" action="/issue/addForm">
-            <div class="link-boxes">
-                <label for="memberId">Member ID</label>
-                <input id="memberId" type="number" name="memberId" class="action-button" />
-                        </div>
+        <form:form method="PUT" action="/member/updateMember">
+            <input type="hidden" name="memberId" value="${member.memberId}" />
 
             <div class="link-boxes">
-                <label for="memberName">Member Name</label>
-                <input id="memberName" type="text" name="name" class="action-button" />
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" value="${member.name}" class="action-button" required/>
             </div>
 
             <div class="link-boxes">
-                <label for="book">Book</label>
-                <select id="book" name="book" class="action-button">
-                    <option value="book1">Book 1</option>
-                    <option value="book2">Book 2</option>
-                    <option value="book3">Book 3</option>
-                </select>
+                <label for="location">Address</label>
+                <input id="location" type="text" name="location" value="${member.addresses[0].location}" class="action-button" required />
             </div>
 
             <div class="link-boxes">
-                <label for="issueDate">Issue Date</label>
-                <input id="issueDate" type="date" name="issueDate" class="action-button" />
+                <label for="phoneNumber">Phone Number</label>
+                <input id="phoneNumber" type="text" name="phoneNumber" value="${member.addresses[0].phoneNumber}" class="action-button" required/>
             </div>
 
-            <div class="link-boxes">
-                <label for="returnDate">Return Date</label>
-                <input id="returnDate" type="date" name="returnDate" class="action-button" />
-            </div>
-
-            <div class="link-boxes">
-                <input type="submit" value="Issue" class="action-button" />
-                <input type="submit" value="Edit" class="action-button" />
-                <input type="submit" value="Delete" class="action-button" />
-            </div>
-        </form:form>
-
-        <form:form action="/admin/cancel">
-            <input type="submit" value="Cancel" class="cancel-button" />
+            <input type="submit" value="Update" class="edit-button" />
+            <a href="/webmvc/dashboard" class="cancel-button">Cancel</a>
         </form:form>
     </div>
 </body>

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/webc")
-public class MainController {
+public class LoginController {
     @Autowired
     private BookServiceImpl bookService;
     @Autowired
@@ -41,61 +41,9 @@ public class MainController {
         }
     }
 
-    // Display the admin form
     @GetMapping("/dashboard")
     public ModelAndView showAdminForm() {
         return new ModelAndView("dashboard");
     }
 
-    @GetMapping("/book")
-    public String showAddBookForm(Model model) {
-        model.addAttribute("book", new Book());
-        return "book";
-    }
-
-    @GetMapping("/member")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("member", new Member());
-        model.addAttribute("address", new Address());
-        return "memberForm";
-    }
-
-    @GetMapping("/issueBook")
-    public String showIssueBookForm(Model model) {
-        return "issueBook";
-    }
-
-    @GetMapping("/returnbook")
-    public String showReturnBookForm(Model model) {
-        return "returnBook";
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/{file-name}")
-    public String categoryPage(@PathVariable("file-name") String filename) {
-        // Logic for Category page
-        return filename;
-    }
 }
